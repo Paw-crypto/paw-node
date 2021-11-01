@@ -51,10 +51,10 @@ char const * beta_genesis_data = R"%%%({
 char const * live_genesis_data = R"%%%({
 	"type": "open",
 	"source": "E89208DD038FBB269987689621D52292AE9C35941A7484756ECCED92A65093BA",
-	"representative": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
-	"account": "xrb_3t6k35gi95xu6tergt6p69ck76ogmitsa8mnijtpxm9fkcm736xtoncuohr3",
-	"work": "62f05417dd3fb691",
-	"signature": "9F0C933C8ADE004D808EA1985FA746A7E95BA2A38F867640F53EC8F180BDFE9E2C1268DEAD7C2664F356E37ABA362BC58E46DBA03E523A7B5A19E4B6EB12BB02"
+	"representative": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
+	"account": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
+	"work": "7a3b8c0fd4138da7",
+	"signature": "C7287CA18A8C87A98767E9F351309EB6A3773F260ABB6BF715A2A19F39EFBB9B5CC5DFFFA8C6EF8385879249079698E8F15C938AD23CB5571DC4FDF6E7550506"
 	})%%%";
 
 std::string const test_genesis_data = nano::get_env_or_default ("NANO_TEST_GENESIS_BLOCK", R"%%%({
@@ -90,7 +90,7 @@ nano::network_params::network_params (nano::nano_networks network_a) :
 	unsigned constexpr kdf_full_work = 64 * 1024;
 	unsigned constexpr kdf_dev_work = 8;
 	kdf_work = network.is_dev_network () ? kdf_dev_work : kdf_full_work;
-	header_magic_number = network.is_dev_network () ? std::array<uint8_t, 2>{ { 'R', 'A' } } : network.is_beta_network () ? std::array<uint8_t, 2>{ { 'R', 'B' } } : network.is_live_network () ? std::array<uint8_t, 2>{ { 'R', 'C' } } : nano::test_magic_number ();
+	header_magic_number = network.is_dev_network () ? std::array<uint8_t, 2>{ { 'S', 'B' } } : network.is_beta_network () ? std::array<uint8_t, 2>{ { 'S', 'C' } } : network.is_live_network () ? std::array<uint8_t, 2>{ { 'S', 'D' } } : nano::test_magic_number ();
 }
 
 uint8_t nano::protocol_constants::protocol_version_min () const
