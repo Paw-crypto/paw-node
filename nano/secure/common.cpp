@@ -50,11 +50,11 @@ char const * beta_genesis_data = R"%%%({
 
 char const * live_genesis_data = R"%%%({
 	"type": "open",
-	"source": "785FFABECE230D19E72101C37738D52862860CDC547751BD6CA289847977B2F0",
-	"representative": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
-	"account": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
-	"work": "0a4b129daad45caa",
-	"signature": "860E3F132212B4F8866DA96451C58E15907DA5075F143695300DC6208B2496EE3B037017C1FE2AC6F21482018DE8D547322A140E86FB4529EA6C979480F13106"
+	"source": "B8834D0240AEC59340206ACC6C7FE72111E75029BB950EEE9CCBBE8F9A959E2F",
+	"representative": "woof_3g65bn363dp7kf141tpefjzygaajwxa4mgwo3uqbskxyjyfbd9jhnzdb4iit",
+	"account": "woof_3g65bn363dp7kf141tpefjzygaajwxa4mgwo3uqbskxyjyfbd9jhnzdb4iit",
+	"work": "e5c716308ffbdc79",
+	"signature": "ED6186E2644D99CBCBDCCB4876E0D630303CEE5F52BF36C7C328D5935698B4C61E648F9C95720DA9C08E42858E81AB68124EFE7E8F7A235FC6DF7BF90B5BA909"
 	})%%%";
 
 std::string const test_genesis_data = nano::get_env_or_default ("NANO_TEST_GENESIS_BLOCK", R"%%%({
