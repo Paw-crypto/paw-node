@@ -50,7 +50,7 @@ char const * beta_genesis_data = R"%%%({
 
 char const * live_genesis_data = R"%%%({
 	"type": "open",
-	"source": "E89208DD038FBB269987689621D52292AE9C35941A7484756ECCED92A65093BA",
+	"source": "E0DCE22B9647A21BC087F73252C045A22014FDBCA00B97B9DA8A784CA3E604B2",
 	"representative": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
 	"account": "woof_1y4zzczewarf59mk41g5gwwfcc54ir8fro5qc8ypsanbijwqheqi6dtqpc58",
 	"work": "7a3b8c0fd4138da7",
