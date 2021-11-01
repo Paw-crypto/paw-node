@@ -101,16 +101,8 @@ test)
 	;;
 esac
 
-raidir="${HOME}/RaiBlocks${dirSuffix}"
-nanodir="${HOME}/Nano${dirSuffix}"
+nanodir="${HOME}/Woofs${dirSuffix}"
 dbFile="${nanodir}/data.ldb"
-
-if [ -d "${raidir}" ]; then
-	echo "Moving ${raidir} to ${nanodir}"
-	mv "$raidir" "$nanodir"
-else
-	mkdir -p "${nanodir}"
-fi
 
 if [ ! -f "${nanodir}/config-node.toml" ] && [ ! -f "${nanodir}/config.json" ]; then
 	echo "Config file not found, adding default."
