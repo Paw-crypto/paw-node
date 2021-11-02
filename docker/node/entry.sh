@@ -101,8 +101,7 @@ test)
 	;;
 esac
 
-raidir="${HOME}/RaiBlocks${dirSuffix}"
-nanodir="${HOME}/Nano${dirSuffix}"
+nanodir="${HOME}/Paw${dirSuffix}"
 dbFile="${nanodir}/data.ldb"
 
 if [ -d "${raidir}" ]; then
