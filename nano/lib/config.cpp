@@ -104,7 +104,7 @@ uint16_t test_websocket_port ()
 
 std::array<uint8_t, 2> test_magic_number ()
 {
-	auto test_env = get_env_or_default ("NANO_TEST_MAGIC_NUMBER", "RX");
+	auto test_env = get_env_or_default ("NANO_TEST_MAGIC_NUMBER", "PX");
 	std::array<uint8_t, 2> ret;
 	std::copy (test_env.begin (), test_env.end (), ret.data ());
 	return ret;
