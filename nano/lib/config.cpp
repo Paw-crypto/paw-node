@@ -27,9 +27,9 @@ struct HexTo
 namespace nano
 {
 work_thresholds const network_constants::publish_full (
-0xfffff00000000000, // 64x lower than publish_full.epoch_1
-0xfffff00000000000, // same as epoch_1
-0xffffe00000000000 // 2x lower than epoch_1
+0xffffc00000000000, // 64x lower than publish_full.epoch_1
+0xfffff80000000000, // same as epoch_1
+0xfffe000000000000 // 2x lower than epoch_1
 );
 
 work_thresholds const network_constants::publish_beta (
