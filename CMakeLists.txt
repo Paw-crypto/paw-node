@@ -41,7 +41,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR "22")
 set(CPACK_PACKAGE_VERSION_MINOR "1")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_PACKAGE_VERSION_PRE_RELEASE "0")
-set(CPACK_PACKAGE_VENDOR "Nano Currency")
+set(CPACK_PACKAGE_VENDOR "Paw Currency")
 
 if(CI_BUILD)
   set(TAG_VERSION_STRING "$ENV{TRAVIS_TAG}")
@@ -162,10 +162,10 @@ set(CPACK_PACKAGE_NAME
     "nano-node"
     CACHE STRING "" FORCE)
 set(CPACK_NSIS_PACKAGE_NAME
-    "Nano"
+    "Paw"
     CACHE STRING "" FORCE)
 set(CPACK_PACKAGE_INSTALL_DIRECTORY
-    "nanocurrency"
+    "pawcurrency"
     CACHE STRING "" FORCE)
 set(NANO_SERVICE "nanocurrency.service")
 set(NANO_PREFIX "")
@@ -742,11 +742,11 @@ if(NANO_GUI OR RAIBLOCKS_GUI)
         "DeleteRegKey HKLM 'SYSTEM\\\\CurrentControlSet\\\\Services\\\\EventLog\\\\Nano${NANO_PREFIX}'"
     )
     set(CPACK_NSIS_MUI_ICON ${CMAKE_SOURCE_DIR}/Nano.ico)
-    set(CPACK_NSIS_DISPLAY_NAME "Nano${NANO_PREFIX}")
-    set(CPACK_NSIS_URL_INFO_ABOUT "https://nano.org")
-    set(CPACK_NSIS_CONTACT "info@nano.org")
-    set(CPACK_NSIS_MENU_LINKS "nano_wallet.exe" "Nano Wallet"
-                              "https://nano.org" "Nano website")
+    set(CPACK_NSIS_DISPLAY_NAME "Paw${NANO_PREFIX}")
+    set(CPACK_NSIS_URL_INFO_ABOUT "https://paw.digital")
+    set(CPACK_NSIS_CONTACT "team@paw.digital")
+    set(CPACK_NSIS_MENU_LINKS "paw_wallet.exe" "Paw Wallet"
+                              "https://paw.digital" "Paw website")
     set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
     get_target_property(Qt5WindowsPlugin Qt5::QWindowsIntegrationPlugin
                         LOCATION)

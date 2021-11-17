@@ -52,9 +52,9 @@ nano::node_config::node_config (uint16_t peering_port_a, nano::logging const & l
 		}
 		case nano::nano_networks::nano_live_network:
 			preconfigured_peers.push_back (default_live_peer_network);
-			preconfigured_representatives.emplace_back ("B8834D0240AEC59340206ACC6C7FE72111E75029BB950EEE9CCBBE8F9A959E2F");
-			preconfigured_representatives.emplace_back ("AD3530696A76C9BDD4444FD90C215EC42DD778CA655C738CA358966925BF96E5");
-			preconfigured_representatives.emplace_back ("AD3530696A76C9BDD4444FD90C215EC42DD778CA655C738CA358966925BF96E5");
+			preconfigured_representatives.emplace_back ("FBDF10FFA56845E89100D68D4CA5BAE3F65EA8900D53A3F666BEB9A770E540CA");
+			//preconfigured_representatives.emplace_back ("1DBCF8CE7C1002C52964BBA9B42BB5E799BBB2B9FD2F1BB6864ED0B431883743");
+			//preconfigured_representatives.emplace_back ("0B1D50F219B5C1654D73F6D2365D33BA3F1C40C042F9ED5C11E85A42C63EA21B");
 			break;
 		case nano::nano_networks::nano_test_network:
 			preconfigured_peers.push_back (default_test_peer_network);
