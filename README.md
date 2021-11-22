@@ -18,13 +18,10 @@ PAW is a animal themed digital currency. More information is available over on t
 
 ---
 
-### Guides & Documentation
+### Guides 
 
 * [Whitepaper](https://paw.digital/PAW_Whitepawper.pdf)
-* [Running a Node]()
 
-
-Other documentation details can be found at .
 
 ---
 
@@ -36,10 +33,17 @@ Other documentation details can be found at .
 * [Reddit](https://reddit.com/r/PAW_digital)
 * [Medium](https://medium.com/PAW_digital)
 * [Twitter](https://twitter.com/PAW_digital)
+* [Tracker](https://tracker.paw.digital/)
+* [Tribes](https://tribes.paw.digital/)
 
 ---
 
+## Acknowledgements
 
+Special thanks to the following!
+- [Nano](https://github.com/nanocurrency) - The original one
+
+---
 ### Contact us
 
 We want to hear about any trouble, success, delight, or pain you experience when
