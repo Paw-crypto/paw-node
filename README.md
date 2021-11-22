@@ -1,9 +1,3 @@
-<hr />
-<div align="center">
-    <img src="images/logopaw.svg" alt="Logo" width='150px' height='auto'/>
-</div>
-<hr />
-
 ## What is Paw?
 
 PAW is a animal themed digital currency. More information is available over on the official [Paw repository](https://github.com/paw-digital/paw-node).
