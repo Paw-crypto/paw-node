@@ -1,6 +1,6 @@
 <hr />
 <div align="center">
-    <img src="images/logopaw.svg" alt="Logo" width='300px' height='auto'/>
+    <img src="images/logopaw.svg" alt="Logo" width='100px' height='auto'/>
 </div>
 <hr />
 
