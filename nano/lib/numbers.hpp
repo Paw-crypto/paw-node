@@ -7,10 +7,24 @@ namespace nano
 using uint128_t = boost::multiprecision::uint128_t;
 using uint256_t = boost::multiprecision::uint256_t;
 using uint512_t = boost::multiprecision::uint512_t;
+
 // SI dividers
+
+// 1 Paw is 1000000000000000000000000000 == kxrb_ratio
+
+//1 Billion Paw
+nano::uint128_t const Txrb_ratio = nano::uint128_t ("1000000000000000000000000000000000000"); // 10^36
+
+//1 Million Paw
 nano::uint128_t const Gxrb_ratio = nano::uint128_t ("1000000000000000000000000000000000"); // 10^33
+
+//1 Thousand Paw
 nano::uint128_t const Mxrb_ratio = nano::uint128_t ("1000000000000000000000000000000"); // 10^30
+
+//1 Paw
 nano::uint128_t const kxrb_ratio = nano::uint128_t ("1000000000000000000000000000"); // 10^27
+
+//Confusing
 nano::uint128_t const xrb_ratio = nano::uint128_t ("1000000000000000000000000"); // 10^24
 nano::uint128_t const raw_ratio = nano::uint128_t ("1"); // 10^0
 
