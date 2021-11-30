@@ -52,11 +52,11 @@ nano::node_config::node_config (uint16_t peering_port_a, nano::logging const & l
 		}
 		case nano::nano_networks::nano_live_network:
 			preconfigured_peers.push_back (default_live_peer_network);
-			preconfigured_representatives.emplace_back ("FBDF10FFA56845E89100D68D4CA5BAE3F65EA8900D53A3F666BEB9A770E540CA"); // Genesis
 			preconfigured_representatives.emplace_back ("6183AC08AEBBF10E2ED3AA2641689A5DF08418397A548E1C6664C21D0D606952"); // Dog tribe
 			preconfigured_representatives.emplace_back ("93DDAFEB9DF157D8BD7C20A89AA15C24964CA46FA397E17F99FC81922E035EDE"); // Bear
 			preconfigured_representatives.emplace_back ("AEFE0C9C9F9F694E10F344034A7A0E19BF27244EE54B326DBAF91996489C44E8"); // Clucking chicken
 			preconfigured_representatives.emplace_back ("553687E30BD3B3B5F81696AC0992A3D25125B28721F41C7A5239B1D490D7BBAD"); // Tiny elephant
+			
 			break;
 		case nano::nano_networks::nano_test_network:
 			preconfigured_peers.push_back (default_test_peer_network);
