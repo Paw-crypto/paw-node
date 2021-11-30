@@ -124,7 +124,7 @@
 
 # When calculating online weight, the node is forced to assume at least this much voting weight is online, thus setting a floor for voting weight to confirm transactions at online_weight_minimum * "quorum delta".
 # type:string,amount,raw
-#online_weight_minimum = "110303421914830430446069092008794783744"
+#online_weight_minimum = "180000000000000000000000000000000000000"
 
 # Password fanout factor.
 # type:uint64
@@ -142,7 +142,7 @@
 #preconfigured_peers = ["peering.paw.digital"]
 
 # A list of representative account addresses used when creating new accounts in internal wallets.
-#preconfigured_representatives = ["paw_3yyz45ztct47x4ai3onfbkkuorzpdtnb15cmnhu8fhosnxrgci8c5xp8xbf6"]
+#preconfigured_representatives = ["paw_1re5oi6cxgzj3rqf9cj8a7nbnqhiiie5kyknjrg8es845n8p1tckfpuu8b56", "paw_36yxozosuwcqu4yqra7amciorb6pbkk8zawqw7zsmz63kaq18qpyud7y3kx8", "paw_3dqy3kgbz9ubbrah8j15bbx1w8fz6wk6xscd8bpuoyasks6brj9a3o5akmze", "paw_1obpizjiqnxmpqw3f7oe38bc9nkj6psagahn5jx76gfjtkafhgxfac8sn6qr"]
 
 # Minimum receive amount. Only affects node wallets. A large amount is recommended to avoid automatic work generation for tiny transactions.
 # type:string,amount,raw
@@ -180,7 +180,7 @@
 
 # Local representatives do not vote if the delegated weight is under this threshold. Saves on system resources.
 # type:string,amount,raw
-#vote_minimum = "1000000000000000000000000000000000000"
+#vote_minimum = "1000000000000000000000000000000"
 
 # A list of "address:port" entries to identify work peers.
 #work_peers = []
