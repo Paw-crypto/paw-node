@@ -1033,10 +1033,21 @@ void nano::json_handler::active_difficulty ()
 void nano::json_handler::available_supply ()
 {
 	auto genesis_balance (node.balance (node.network_params.ledger.genesis_account)); // Cold storage genesis
+	
+	auto expenses_balance (node.balance (nano::account ("39CF40A1E1C26342022D30454CF5403E6D4A100686F24B71AA373ABD23C651E1"))); // Expenses account
+	auto team_balance (node.balance (nano::account ("6183AC08AEBBF10E2ED3AA2641689A5DF08418397A548E1C6664C21D0D606952"))); // Team account
+	auto dist1_balance (node.balance (nano::account ("148EAE8149CE1042F2766AB4EEDD90C8D1BE20CB055CF28DBC28CC74915ABC3C"))); // Distribution account
+	auto dist2_balance (node.balance (nano::account ("198A7B0BB6A0A937CCC0A15003AFF29DD2DB98813FB00AA01FB703313467D246"))); // Distribution account
+	auto dist3_balance (node.balance (nano::account ("DE95CA6290680C2C7AC0F76FF10D2FAB5753A4BD861B98F3215B48DE8AA4DECF"))); // Distribution account
+	auto dist4_balance (node.balance (nano::account ("B0420C42A89A7FC58ED575F53F2FBF3BE733C61E33BD9E50CEBC65E05FA17ECA"))); // Distribution account
+	auto dist5_balance (node.balance (nano::account ("834298215ABB5224B8071CDC69CEBC0A0B15D11756412C371B8AF2E5AEB4786A"))); // Distribution account
+	auto dist6_balance (node.balance (nano::account ("B27ED2F873BB56768CA7C79128158B4E7319D2A5669F56E9EE1CBA83C288D82B"))); // Distribution account
+	auto dist7_balance (node.balance (nano::account ("ABEE1F60121F7D6F93718EB2509482B18898E121CE6A23FCDE9E7C746C130759"))); // Distribution account
+	auto dist8_balance (node.balance (nano::account ("362463BC4035708194E119FE632E315E4BA555E5D9379171FB30CF2C1398C8D4"))); // Distribution account
 	auto landing_balance (node.balance (nano::account ("059F68AAB29DE0D3A27443625C7EA9CDDB6517A8B76FE37727EF6A4D76832AD5"))); // Active unavailable account
 	auto faucet_balance (node.balance (nano::account ("8E319CE6F3025E5B2DF66DA7AB1467FE48F1679C13DD43BFDB29FA2E9FC40D3B"))); // Faucet account
 	auto burned_balance ((node.balance_pending (nano::account (0), false)).second); // Burning 0 account
-	auto available (node.network_params.ledger.genesis_amount - genesis_balance - landing_balance - faucet_balance - burned_balance);
+	auto available (node.network_params.ledger.genesis_amount - genesis_balance - landing_balance - faucet_balance - burned_balance - expenses_balance - team_balance - dist1_balance - dist2_balance - dist3_balance - dist4_balance - dist5_balance - dist6_balance - dist7_balance - dist8_balance);
 	response_l.put ("available", available.convert_to<std::string> ());
 	response_errors ();
 }
