@@ -1044,7 +1044,7 @@ void nano::json_handler::available_supply ()
 	auto dist6_balance (node.balance (nano::account ("B27ED2F873BB56768CA7C79128158B4E7319D2A5669F56E9EE1CBA83C288D82B"))); // Distribution account
 	auto dist7_balance (node.balance (nano::account ("ABEE1F60121F7D6F93718EB2509482B18898E121CE6A23FCDE9E7C746C130759"))); // Distribution account
 	auto dist8_balance (node.balance (nano::account ("362463BC4035708194E119FE632E315E4BA555E5D9379171FB30CF2C1398C8D4"))); // Distribution account
-	auto dist_active_balance (node.balance (nano::account ("5DAC1ECA954CB7C5AC7C3E47B179EBF02025660D64B913A622129CF136CA4212"))); // Active Distribution account
+	auto dist_active_balance (node.balance (nano::account ("8DCE88ED0CD10813B41B74DE10D9D084E5322A20511EAB6CD32A3CEC495F5CA7"))); // Active pre-distribution account
 	auto landing_balance (node.balance (nano::account ("059F68AAB29DE0D3A27443625C7EA9CDDB6517A8B76FE37727EF6A4D76832AD5"))); // Active unavailable account
 	auto faucet_balance (node.balance (nano::account ("8E319CE6F3025E5B2DF66DA7AB1467FE48F1679C13DD43BFDB29FA2E9FC40D3B"))); // Faucet account
 	auto burned_balance ((node.balance_pending (nano::account (0), false)).second); // Burning 0 account
