@@ -1053,10 +1053,9 @@ void nano::json_handler::available_supply ()
 	auto dist15_balance (node.balance (nano::account ("84F386E1EE5FD3E91619DD51649CD3A05825BCAF7E33738148923CE7AB347330"))); // Distribution account
 	auto dist16_balance (node.balance (nano::account ("3DF7921E9E6E61D5425B5FB78357F2D8774DA36F661AB68099BAA01C63EFEEAF"))); // Distribution account
 	auto dist_active_balance (node.balance (nano::account ("8DCE88ED0CD10813B41B74DE10D9D084E5322A20511EAB6CD32A3CEC495F5CA7"))); // Active pre-distribution account
-	auto landing_balance (node.balance (nano::account ("059F68AAB29DE0D3A27443625C7EA9CDDB6517A8B76FE37727EF6A4D76832AD5"))); // Active unavailable account
-	auto faucet_balance (node.balance (nano::account ("8E319CE6F3025E5B2DF66DA7AB1467FE48F1679C13DD43BFDB29FA2E9FC40D3B"))); // Faucet account
+	auto burn_account (node.balance (nano::account ("3AB55A7CC0000000000000000000000000000000000000000000000000000000"))); // Burn account
 	auto burned_balance ((node.balance_pending (nano::account (0), false)).second); // Burning 0 account
-	auto available (node.network_params.ledger.genesis_amount - genesis_balance - landing_balance - faucet_balance - burned_balance - expenses_balance - team_balance - dist1_balance - dist2_balance - dist3_balance - dist4_balance - dist5_balance - dist6_balance - dist7_balance - dist8_balance - dist9_balance - dist10_balance - dist11_balance - dist12_balance - dist13_balance - dist14_balance - dist15_balance - dist16_balance - dist_active_balance);
+	auto available (node.network_params.ledger.genesis_amount - genesis_balance - burn_account - burned_balance - expenses_balance - team_balance - dist1_balance - dist2_balance - dist3_balance - dist4_balance - dist5_balance - dist6_balance - dist7_balance - dist8_balance - dist9_balance - dist10_balance - dist11_balance - dist12_balance - dist13_balance - dist14_balance - dist15_balance - dist16_balance - dist_active_balance);
 	response_l.put ("available", available.convert_to<std::string> ());
 	response_errors ();
 }
