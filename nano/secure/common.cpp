@@ -99,17 +99,6 @@ nano::network_params::network_params (nano::networks network_a) :
 	unsigned constexpr kdf_full_work = 64 * 1024;
 	unsigned constexpr kdf_dev_work = 8;
 	kdf_work = network.is_dev_network () ? kdf_dev_work : kdf_full_work;
-	header_magic_number = network.is_dev_network () ? std::array<uint8_t, 2>{ { 'P', 'A' } } : network.is_beta_network () ? std::array<uint8_t, 2>{ { 'P', 'B' } } : network.is_live_network () ? std::array<uint8_t, 2>{ { 'P', 'C' } } : nano::test_magic_number ();
-}
-
-uint8_t nano::protocol_constants::protocol_version_min () const
-{
-	return protocol_version_min_m;
-}
-
-nano::ledger_constants::ledger_constants (nano::network_constants & network_constants) :
-	ledger_constants (network_constants.network ())
-{
 }
 
 nano::ledger_constants::ledger_constants (nano::work_thresholds & work, nano::networks network_a) :
