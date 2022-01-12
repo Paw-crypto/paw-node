@@ -6,12 +6,14 @@
 
 static std::vector<boost::filesystem::path> all_unique_paths;
 
-boost::filesystem::path nano::working_path (bool legacy)
+boost::filesystem::path nano::working_path (nano::networks network)
 {
-	static nano::network_constants network_constants;
 	auto result (nano::app_path ());
-	switch (network_constants.network ())
+	switch (network)
 	{
+		case nano::networks::invalid:
+			release_assert (false);
+			break;
 		case nano::nano_networks::nano_dev_network:
 			result /= "PawDev";
 			break;
@@ -28,9 +30,9 @@ boost::filesystem::path nano::working_path (bool legacy)
 	return result;
 }
 
-boost::filesystem::path nano::unique_path ()
+boost::filesystem::path nano::unique_path (nano::networks network)
 {
-	auto result (working_path () / boost::filesystem::unique_path ());
+	auto result (working_path (network) / boost::filesystem::unique_path ());
 	all_unique_paths.push_back (result);
 	return result;
 }
