@@ -1438,15 +1438,6 @@ bool nano::ledger::migrate_lmdb_to_rocksdb (boost::filesystem::path const & data
 			}
 		});
 
-		store.unchecked.for_each_par (
-		[&rocksdb_store] (nano::read_transaction const & /*unused*/, auto i, auto n) {
-			for (; i != n; ++i)
-			{
-				auto rocksdb_transaction (rocksdb_store->tx_begin_write ({}, { nano::tables::unchecked }));
-				rocksdb_store->unchecked.put (rocksdb_transaction, i->first, i->second);
-			}
-		});
-
 		store.pending.for_each_par (
 		[&rocksdb_store] (nano::read_transaction const & /*unused*/, auto i, auto n) {
 			for (; i != n; ++i)
@@ -1517,7 +1508,6 @@ bool nano::ledger::migrate_lmdb_to_rocksdb (boost::filesystem::path const & data
 		}
 
 		// Compare counts
-		error |= store.unchecked.count (lmdb_transaction) != rocksdb_store->unchecked.count (rocksdb_transaction);
 		error |= store.peer.count (lmdb_transaction) != rocksdb_store->peer.count (rocksdb_transaction);
 		error |= store.pruned.count (lmdb_transaction) != rocksdb_store->pruned.count (rocksdb_transaction);
 		error |= store.final_vote.count (lmdb_transaction) != rocksdb_store->final_vote.count (rocksdb_transaction);
@@ -1544,6 +1534,11 @@ bool nano::ledger::migrate_lmdb_to_rocksdb (boost::filesystem::path const & data
 		error = true;
 	}
 	return error;
+}
+
+bool nano::ledger::bootstrap_weight_reached () const
+{
+	return cache.block_count >= bootstrap_weight_max_blocks;
 }
 
 nano::uncemented_info::uncemented_info (nano::block_hash const & cemented_frontier, nano::block_hash const & frontier, nano::account const & account) :
