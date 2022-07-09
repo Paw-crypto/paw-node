@@ -12,7 +12,7 @@ if (${env:artifact} -eq 1) {
     else {
         $env:NETWORK_CFG = "live"
     }
-    $env:NANO_SHARED_BOOST = "ON"
+    $env:NANO_SHARED_BOOST = "OFF"
     $env:NANO_TEST = "-DNANO_TEST=OFF"
     $env:TRAVIS_TAG = ${env:TAG}
     

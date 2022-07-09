@@ -168,7 +168,7 @@ set_property(
   CACHE ACTIVE_NETWORK PROPERTY STRINGS nano_dev_network nano_beta_network
                                 nano_live_network nano_test_network)
 set(CPACK_PACKAGE_NAME
-    "nano-node"
+    "paw-node"
     CACHE STRING "" FORCE)
 set(CPACK_NSIS_PACKAGE_NAME
     "Paw"
@@ -681,8 +681,18 @@ if(NANO_GUI OR RAIBLOCKS_GUI)
     set_target_properties(
       nano_wallet_com
       PROPERTIES COMPILE_FLAGS "-DBOOST_ASIO_HAS_STD_ARRAY=1"
-                 OUTPUT_NAME "nano_wallet"
+                 OUTPUT_NAME "paw_wallet"
                  SUFFIX ".com")
+  endif()
+
+  set_target_properties(nano_node PROPERTIES OUTPUT_NAME "paw_node")
+  set_target_properties(nano_rpc PROPERTIES OUTPUT_NAME "paw_rpc")
+  set_target_properties(nano_wallet PROPERTIES OUTPUT_NAME "paw_wallet")
+  if(NANO_POW_SERVER)
+    set_target_properties(nano_pow_server PROPERTIES OUTPUT_NAME "paw_pow_server")
+  endif()
+  if(WIN32)
+    install(FILES ${PROJECT_SOURCE_DIR}/start_node.bat DESTINATION .)
   endif()
 
   set_target_properties(
