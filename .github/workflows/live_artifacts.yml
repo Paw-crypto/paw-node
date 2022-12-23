@@ -141,7 +141,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: windows_${{ github.event.inputs.ref }}.zip
-          path: ${{github.workspace}}\build\paw-node-*-win64.zip
+          path: ${{github.workspace}}\build\nano-node-*-win64.zip
       - name: on error
         uses: actions/upload-artifact@v3
         if: failure()
