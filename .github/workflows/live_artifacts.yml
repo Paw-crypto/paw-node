@@ -4,41 +4,39 @@ on:
     inputs:
       repo:
         description: "repo"
-        default: "nanocurrency/nano-node"
+        default: "paw-digital/paw-node"
         required: true
       ref:
         description: "tag to build"
-        default: "develop"
+        default: "master"
         required: true
 env:
   artifact: 1
 
 jobs:
-  osx_job:
-    runs-on: macOS-10.15
-    timeout-minutes: 90
-    env:
-      BOOST_ROOT: /tmp/boost
-    steps:
-      - name: tag
-        run: |
-          echo "TAG=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
-      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
-        with:
-          submodules: "recursive"
-          ref: ${{ github.event.inputs.ref }}
-          repository: ${{ github.event.inputs.repo }}
-      - name: Fetch Deps
-        run: ci/actions/osx/install_deps.sh
-      - name: Build Artifact
-        run: TRAVIS_TAG=${TAG} ci/build-deploy.sh "/tmp/qt/lib/cmake/Qt5";
-      - name: Deploy Artifact
-        run: ci/actions/deploy.sh
-        env:
-          S3_BUILD_DIRECTORY: ${{ secrets.S3_BUILD_DIRECTORY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-2
+#  osx_job:
+#    runs-on: macOS-10.15
+#    timeout-minutes: 90
+#    env:
+#      BOOST_ROOT: /tmp/boost
+#    steps:
+#      - name: tag
+#        run: |
+#          echo "TAG=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
+#      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+#        with:
+#          submodules: "recursive"
+#          ref: ${{ github.event.inputs.ref }}
+#          repository: ${{ github.event.inputs.repo }}
+#      - name: Fetch Deps
+#        run: ci/actions/osx/install_deps.sh
+#      - name: Build Artifact
+#        run: TRAVIS_TAG=${TAG} ci/build-deploy.sh "/tmp/qt/lib/cmake/Qt5";
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v1.0.0
+#        with:
+#          name: osx_${{ github.event.inputs.ref }}.tar
+#          path: .
 
   linux_job:
     runs-on: ubuntu-20.04
@@ -58,45 +56,59 @@ jobs:
         run: ci/actions/linux/install_deps.sh
       - name: Build Artifact
         run: docker run -v ${GITHUB_WORKSPACE}:/workspace nanocurrency/nano-env:gcc /bin/bash -c "cd /workspace && TRAVIS_TAG=${TAG} ci/build-deploy.sh /usr/lib/x86_64-linux-gnu/cmake/Qt5"
-      - name: Deploy Artifact
-        run: ci/actions/deploy.sh
-        env:
-          S3_BUILD_DIRECTORY: ${{ secrets.S3_BUILD_DIRECTORY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-2
-
-  linux_docker_job:
-    runs-on: ubuntu-20.04
-    timeout-minutes: 90
-    steps:
-      - name: tag
+      - name: ls
         run: |
-          echo "TAG=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
-      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+          ls ${{github.workspace}}/build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          submodules: "recursive"
-          ref: ${{ github.event.inputs.ref }}
-          repository: ${{ github.event.inputs.repo }}
-      - name: Fetch Deps
-        env:
-          COMPILER: gcc
-        run: ci/actions/linux/install_deps.sh
-      - name: Build Docker (nanocurrency/nano)
-        run: TRAVIS_TAG=${TAG} ci/actions/linux/docker-build.sh
-      - name: Deploy Docker Hub (nanocurrency/nano)
-        if: ${{ github.repository == 'nanocurrency/nano-node' }}
-        run: TRAVIS_TAG=${TAG} ci/actions/linux/docker-deploy.sh
-        env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Login to ghcr.io
-        uses: docker/login-action@adb73476b6e06caddec5db0bc1deacbec8cdd947
+          name: linux_${{ github.event.inputs.ref }}.tar.bz2
+          path: ${{github.workspace}}/build/paw-node-*-Linux.tar.bz2
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: linux_${{ github.event.inputs.ref }}.deb
+#          path: ${{github.workspace}}/build/paw-node-*-Linux.deb
+      - name: on error
+        uses: actions/upload-artifact@v3
+        if: failure()
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_PAT }}
-      - name: Deploy Docker (ghcr.io)
-        run: ci/actions/linux/ghcr_push.sh
+          name: logs
+          path: |
+            ${{github.workspace}}\build\CMakeFiles\CMakeError.log
+            ${{github.workspace}}\build\CMakeFiles\CMakeOutput.log
+
+#  linux_docker_job:
+#    runs-on: ubuntu-20.04
+#    timeout-minutes: 90
+#    steps:
+#      - name: tag
+#        run: |
+#          echo "TAG=${{ github.event.inputs.ref }}" >> $GITHUB_ENV
+#      - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+#        with:
+#          submodules: "recursive"
+#          ref: ${{ github.event.inputs.ref }}
+#          repository: ${{ github.event.inputs.repo }}
+#      - name: Fetch Deps
+#        env:
+#          COMPILER: gcc
+#        run: ci/actions/linux/install_deps.sh
+#      - name: Build Docker (nanocurrency/nano)
+#        run: TRAVIS_TAG=${TAG} ci/actions/linux/docker-build.sh
+#      - name: Deploy Docker Hub (nanocurrency/nano)
+#        if: ${{ github.repository == 'nanocurrency/nano-node' }}
+#        run: TRAVIS_TAG=${TAG} ci/actions/linux/docker-deploy.sh
+#        env:
+#          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+#      - name: Login to ghcr.io
+#        uses: docker/login-action@adb73476b6e06caddec5db0bc1deacbec8cdd947
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.repository_owner }}
+#          password: ${{ secrets.GHCR_PAT }}
+#      - name: Deploy Docker (ghcr.io)
+#        run: ci/actions/linux/ghcr_push.sh
 
   windows_job:
     runs-on: windows-latest
@@ -117,10 +129,24 @@ jobs:
         env:
           CSC_LINK: ${{ secrets.CSC_LINK }}
           CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-      - name: Deploy Artifact
-        run: ci/actions/windows/deploy.ps1
-        env:
-          S3_BUILD_DIRECTORY: ${{ secrets.S3_BUILD_DIRECTORY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-2
+      - name: dir
+        run: |
+          dir ${{github.workspace}}\build
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: windows_${{ github.event.inputs.ref }}.exe
+#          path: ${{github.workspace}}\build\paw-node-*-win64.exe
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows_${{ github.event.inputs.ref }}.zip
+          path: ${{github.workspace}}\build\paw-node-*-win64.zip
+      - name: on error
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: logs
+          path: |
+            ${{github.workspace}}\build\CMakeFiles\CMakeError.log
+            ${{github.workspace}}\build\CMakeFiles\CMakeOutput.log
