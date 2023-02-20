@@ -82,7 +82,7 @@
 
 # Percentage of online weight to hint at starting an election. Defaults to 10.
 # type:uint32,[5,50]
-#election_hint_weight_percent = 10
+#election_hint_weight_percent = 50
 
 # Enable or disable voting. Enabling this option requires additional system resources, namely increased CPU, bandwidth and disk usage.
 # type:bool
@@ -104,12 +104,6 @@
 # type:uint64
 #io_threads = 12
 
-# DEPRECATED: use node.lmdb.max_databases instead.
-# Maximum open lmdb databases. Increase default if more than 100 wallets is required.
-# Note: external management is recommended when a large number of wallets is required (see https://docs.nano.org/integration-guides/key-management/).
-# type:uint64
-#lmdb_max_dbs = 128
-
 # Limit for number of queued confirmation requests for one channel, after which new requests are dropped until the queue drops below this value.
 # type:uint32
 #max_queued_requests = 512
@@ -124,7 +118,7 @@
 
 # When calculating online weight, the node is forced to assume at least this much voting weight is online, thus setting a floor for voting weight to confirm transactions at online_weight_minimum * "quorum delta".
 # type:string,amount,raw
-#online_weight_minimum = "180000000000000000000000000000000000000"
+#online_weight_minimum = "60000000000000000000000000000000000000"
 
 # Password fanout factor.
 # type:uint64
@@ -147,6 +141,10 @@
 # Minimum receive amount. Only affects node wallets. A large amount is recommended to avoid automatic work generation for tiny transactions.
 # type:string,amount,raw
 #receive_minimum = "1000000000000000000000000"
+
+# Rep crawler minimum weight, if this is less than minimum principal weight then this is taken as the minimum weight a rep must have to be tracked. If you want to track all reps set this to 0. If you do not want this to influence anything then set it to max value. This is only useful for debugging or for people who really know what they are doing.
+# type:string,amount,raw
+#rep_crawler_weight_minimum = "340282366920938463463374607431768211455"
 
 # Number of additional threads dedicated to signature verification. Defaults to number of CPU threads / 2.
 # type:uint64
@@ -386,6 +384,11 @@
 # Log node startup and shutdown messages.
 # type:bool
 #node_lifetime_tracing = false
+
+# Rep crawler logging. Enabling this option leads to a high volume.
+# of log messages which may affect node performance.
+# type:bool
+#rep_crawler = false
 
 # Log file rotation size in character count.
 # type:uint64

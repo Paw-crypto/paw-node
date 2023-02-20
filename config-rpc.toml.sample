@@ -25,7 +25,7 @@
 
 # Listening port for the RPC server.
 # type:uint16
-#port = 7046
+#port = 45000
 
 [logging]
 
@@ -45,9 +45,9 @@
 
 # Listening port of IPC server.
 # type:uint16
-#ipc_port = 7047
+#ipc_port = 46000
 
 # Number of IPC connections to establish.
 # type:uint32
-#num_ipc_connections = 8
+#num_ipc_connections = 1
 
