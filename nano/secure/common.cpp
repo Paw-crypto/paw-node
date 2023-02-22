@@ -171,7 +171,7 @@ nano::node_constants::node_constants (nano::network_constants & network_constant
 	search_pending_interval = network_constants.is_dev_network () ? std::chrono::seconds (1) : std::chrono::seconds (5 * 60);
 	unchecked_cleaning_interval = std::chrono::minutes (30);
 	process_confirmed_interval = network_constants.is_dev_network () ? std::chrono::milliseconds (50) : std::chrono::milliseconds (500);
-	max_weight_samples = (network_constants.is_live_network () || network_constants.is_test_network ()) ? 4032 : 288;
+	max_weight_samples = (network_constants.is_live_network () || network_constants.is_test_network ()) ? 576 : 288;
 	weight_period = 5 * 60; // 5 minutes
 }
 
