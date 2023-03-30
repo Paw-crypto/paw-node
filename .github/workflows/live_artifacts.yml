@@ -126,7 +126,7 @@ jobs:
       - name: Build Docker (pawdigital/paw)
         run: CI_TAG=${TAG} ci/actions/linux/docker-build.sh
       - name: Deploy Docker Hub (pawdigital/paw)
-        if: ${{ github.repository == 'pawdigital/paw-node' }}
+        if: ${{ github.repository == 'paw-digital/paw-node' }}
         run: CI_TAG=${TAG} ci/actions/linux/docker-deploy.sh
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
