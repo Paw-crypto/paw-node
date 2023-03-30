@@ -15,5 +15,5 @@ qt5-default \
 valgrind \
 xorg xvfb xauth xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
 
-ARG REPOSITORY=nanocurrency/nano-node
+ARG REPOSITORY=pawdigital/paw-node
 LABEL org.opencontainers.image.source https://github.com/$REPOSITORY

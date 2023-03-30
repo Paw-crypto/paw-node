@@ -62,7 +62,7 @@ jobs:
           COMPILER: gcc
         run: ci/actions/linux/install_deps.sh
       - name: Build Artifact
-        run: docker run -v ${GITHUB_WORKSPACE}:/workspace nanocurrency/nano-env:gcc /bin/bash -c "cd /workspace && CI_TAG=${TAG} ci/build-deploy.sh /usr/lib/x86_64-linux-gnu/cmake/Qt5"
+        run: docker run -v ${GITHUB_WORKSPACE}:/workspace pawdigital/paw-env:gcc /bin/bash -c "cd /workspace && CI_TAG=${TAG} ci/build-deploy.sh /usr/lib/x86_64-linux-gnu/cmake/Qt5"
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -90,14 +90,14 @@ jobs:
 #          ref: ${{ github.ref }}
 #          repository: ${{ github.repository }}
 #      - name: CentOS Base
-#        run: ci/build-docker-image.sh docker/ci/Dockerfile-centos nanocurrency/nano-env:centos
+#        run: ci/build-docker-image.sh docker/ci/Dockerfile-centos pawdigital/paw-env:centos
 #      - name: Build Artifact
 #        run: |
 #          mkdir -p ${GITHUB_WORKSPACE}/artifacts
 #          docker run -e LIVE=1 -e TAG=$TAG -e REPO_TO_BUILD=$REPO_TO_BUILD -e RPM_RELEASE=1 \
 #          -v ${GITHUB_WORKSPACE}:/workspace \
 #          -v ${GITHUB_WORKSPACE}/artifacts:/root/rpmbuild \
-#          nanocurrency/nano-env:centos /bin/bash -c "ci/build-centos.sh"
+#          pawdigital/paw-env:centos /bin/bash -c "ci/build-centos.sh"
 ##      - name: Deploy Artifacts
 ##        run: ci/actions/deploy.sh
 ##        env:

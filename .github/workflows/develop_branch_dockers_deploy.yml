@@ -18,7 +18,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Deploy Docker (ghcr.io)
         run: ci/actions/linux/ghcr_push.sh
-      - name: Deploy Docker (nanocurrency/nano-env)
+      - name: Deploy Docker (pawdigital/paw-env)
         run: ci/actions/linux/docker-deploy.sh
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

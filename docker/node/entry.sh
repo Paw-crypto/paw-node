@@ -4,11 +4,11 @@ set -euf
 
 usage() {
 	printf "Usage:\n"
-	printf "  $0 nano_node [daemon] [cli_options] [-l] [-v size]\n"
+	printf "  $0 paw_node [daemon] [cli_options] [-l] [-v size]\n"
 	printf "    daemon\n"
 	printf "      start as daemon\n\n"
 	printf "    cli_options\n"
-	printf "      nano_node cli options <see nano_node --help>\n\n"
+	printf "      paw_node cli options <see paw_node --help>\n\n"
 	printf "    -l\n"
 	printf "      log to console <use docker logs {container}>\n\n"
 	printf "    -v<size>\n"
@@ -20,7 +20,7 @@ usage() {
 	printf "    *\n"
 	printf "      usage\n\n"
 	printf "default:\n"
-	printf "  $0 nano_node daemon -l\n"
+	printf "  $0 paw_node daemon -l\n"
 }
 
 OPTIND=1
@@ -34,8 +34,8 @@ if [ $# -lt 2 ]; then
 	exit 1
 fi
 
-if [ "$1" = 'nano_node' ]; then
-	command="${command}nano_node"
+if [ "$1" = 'paw_node' ]; then
+	command="${command}paw_node"
 	shift
 	for i in $@; do
 		case $i in
@@ -102,7 +102,7 @@ test)
 esac
 
 raidir="${HOME}/RaiBlocks${dirSuffix}"
-nanodir="${HOME}/Nano${dirSuffix}"
+nanodir="${HOME}/Paw${dirSuffix}"
 dbFile="${nanodir}/data.ldb"
 
 if [ -d "${raidir}" ]; then
@@ -125,7 +125,7 @@ case $command in
 			dbFileSize="$(stat -c %s "${dbFile}" 2>/dev/null)"
 			if [ "${dbFileSize}" -gt $((1024 * 1024 * 1024 * db_size)) ]; then
 				echo "ERROR: Database size grew above ${db_size}GB (size = ${dbFileSize})" >&2
-				nano_node --vacuum
+				paw_node --vacuum
 			fi
 		fi
 	fi
