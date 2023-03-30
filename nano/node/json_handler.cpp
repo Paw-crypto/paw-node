@@ -131,6 +131,14 @@ void nano::json_handler::process_request (bool unsafe_a)
 			{
 				raw_to_paw ();
 			}
+			else if (action == "adia_to_raw")
+			{
+				adia_to_raw ();
+			}
+			else if (action == "raw_to_adia")
+			{
+				raw_to_adia ();
+			}
 			else if (action == "password_valid")
 			{
 				password_valid ();
@@ -2898,6 +2906,35 @@ void nano::json_handler::raw_to_paw ()
 	if (!ec)
 	{
 		auto result (amount.number () / nano::kxrb_ratio);
+		response_l.put ("amount", result.convert_to<std::string> ());
+	}
+	response_errors ();
+}
+
+void nano::json_handler::adia_to_raw ()
+{
+	auto amount (amount_impl ());
+	if (!ec)
+	{
+		auto result (amount.number () * nano::adia_ratio);
+		if (result > amount.number ())
+		{
+			response_l.put ("amount", result.convert_to<std::string> ());
+		}
+		else
+		{
+			ec = nano::error_common::invalid_amount_big;
+		}
+	}
+	response_errors ();
+}
+
+void nano::json_handler::raw_to_adia ()
+{
+	auto amount (amount_impl ());
+	if (!ec)
+	{
+		auto result (amount.number () / nano::adia_ratio);
 		response_l.put ("amount", result.convert_to<std::string> ());
 	}
 	response_errors ();

@@ -79,6 +79,8 @@ public:
 	void mnano_from_raw (nano::uint128_t = nano::Mxrb_ratio);
 	void paw_to_raw ();
 	void raw_to_paw ();
+	void adia_to_raw ();
+	void raw_to_adia ();
 	void node_id ();
 	void node_id_delete ();
 	void password_change ();

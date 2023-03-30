@@ -26,6 +26,9 @@ nano::uint128_t const kxrb_ratio = nano::uint128_t ("100000000000000000000000000
 
 //milli paw
 nano::uint128_t const xrb_ratio = nano::uint128_t ("1000000000000000000000000"); // 10^24
+
+// Adia
+nano::uint128_t const adia_ratio = nano::uint128_t ("10000000000000000000000000000000000"); // 10^34
 nano::uint128_t const raw_ratio = nano::uint128_t ("1"); // 10^0
 
 class uint128_union
