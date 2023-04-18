@@ -36,7 +36,7 @@ COPY --from=0 /etc/nano-network /etc
 COPY docker/node/entry.sh /usr/bin/entry.sh
 COPY docker/node/config /usr/share/nano/config
 RUN chmod +x /usr/bin/entry.sh
-RUN mv /usr/bin/nano_node /usr/bin/oaw_node
+RUN mv /usr/bin/nano_node /usr/bin/paw_node
 RUN ln -s /usr/bin/paw_node /usr/bin/rai_node
 RUN ln -s /usr/bin/paw_node /usr/bin/nano_node
 RUN ldconfig
